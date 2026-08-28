@@ -32,14 +32,15 @@ let package = Package(
             name: "Effect Equation",
             dependencies: [
                 .product(name: "Effect", package: "swift-effect"),
-                .product(name: "Equation", package: "swift-equation"),
+                .product(name: "Equation Protocol", package: "swift-equation"),
             ]
         ),
         .testTarget(
             name: "Effect Equation Tests",
             dependencies: [
-                "Effect Equation",
+                .target(name: "Effect Equation"),
                 .product(name: "Effect", package: "swift-effect"),
+                .product(name: "Equation Protocol", package: "swift-equation"),
             ]
         ),
     ],

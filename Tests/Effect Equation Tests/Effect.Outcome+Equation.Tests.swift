@@ -1,4 +1,5 @@
 import Effect
+import Equation_Protocol
 import Testing
 
 @testable import Effect_Equation
@@ -8,9 +9,9 @@ struct `Effect.Outcome Equation Tests` {
 
     @Test
     func `equatable for resumed`() {
-        let a: Effect.Outcome<Int, Never> = .resumed(1)
-        let b: Effect.Outcome<Int, Never> = .resumed(1)
-        let c: Effect.Outcome<Int, Never> = .resumed(2)
+        let a: Effect::Effect.Outcome<Int, Never> = .resumed(1)
+        let b: Effect::Effect.Outcome<Int, Never> = .resumed(1)
+        let c: Effect::Effect.Outcome<Int, Never> = .resumed(2)
 
         #expect(a == b)
         #expect(a != c)
@@ -22,9 +23,9 @@ struct `Effect.Outcome Equation Tests` {
             let code: Int
         }
 
-        let a: Effect.Outcome<Int, E> = .threw(E(code: 1))
-        let b: Effect.Outcome<Int, E> = .threw(E(code: 1))
-        let c: Effect.Outcome<Int, E> = .threw(E(code: 2))
+        let a: Effect::Effect.Outcome<Int, E> = .threw(E(code: 1))
+        let b: Effect::Effect.Outcome<Int, E> = .threw(E(code: 1))
+        let c: Effect::Effect.Outcome<Int, E> = .threw(E(code: 2))
 
         #expect(a == b)
         #expect(a != c)
@@ -32,8 +33,8 @@ struct `Effect.Outcome Equation Tests` {
 
     @Test
     func `equatable for aborted`() {
-        let a: Effect.Outcome<Int, Never> = .aborted
-        let b: Effect.Outcome<Int, Never> = .aborted
+        let a: Effect::Effect.Outcome<Int, Never> = .aborted
+        let b: Effect::Effect.Outcome<Int, Never> = .aborted
 
         #expect(a == b)
     }
@@ -42,9 +43,9 @@ struct `Effect.Outcome Equation Tests` {
     func `different cases not equal`() {
         struct E: Swift.Error, Equatable {}
 
-        let resumed: Effect.Outcome<Int, E> = .resumed(1)
-        let threw: Effect.Outcome<Int, E> = .threw(E())
-        let aborted: Effect.Outcome<Int, E> = .aborted
+        let resumed: Effect::Effect.Outcome<Int, E> = .resumed(1)
+        let threw: Effect::Effect.Outcome<Int, E> = .threw(E())
+        let aborted: Effect::Effect.Outcome<Int, E> = .aborted
 
         #expect(resumed != threw)
         #expect(resumed != aborted)

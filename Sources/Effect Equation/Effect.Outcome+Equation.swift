@@ -1,8 +1,11 @@
 public import Effect
-public import Equation
+public import Equation_Protocol
 
-extension Effect.Outcome: Equation.`Protocol`
-where Value: Equation.`Protocol` & ~Copyable, Failure: Equation.`Protocol` {
+extension Effect::Effect.Outcome: @retroactive Equation::Equation.`Protocol`
+where
+    Value: Equation::Equation.`Protocol` & ~Copyable,
+    Failure: Equation::Equation.`Protocol`
+{
 
     public static func == (lhs: borrowing Self, rhs: borrowing Self) -> Bool {
         switch lhs {
