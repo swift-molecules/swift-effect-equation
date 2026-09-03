@@ -38,7 +38,6 @@ let package = Package(
         .testTarget(
             name: "Effect Equation Tests",
             dependencies: [
-                .target(name: "Effect Equation"),
                 .product(name: "Effect", package: "swift-effect"),
                 .product(name: "Equation Protocol", package: "swift-equation"),
             ]
